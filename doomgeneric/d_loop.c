@@ -712,12 +712,12 @@ void TryRunTics (void)
     int realtics;
     int	availabletics;
     int	counts;
-
+    
     // get real tics
     entertic = I_GetTime() / ticdup;
     realtics = entertic - oldentertics;
     oldentertics = entertic;
-
+    
     // in singletics mode, run a single tic every time this function
     // is called.
 
@@ -729,7 +729,7 @@ void TryRunTics (void)
     {
         NetUpdate ();
     }
-
+    
     lowtic = GetLowTic();
 
     availabletics = lowtic - gametic/ticdup;
@@ -758,7 +758,7 @@ void TryRunTics (void)
             OldNetSync();
         }
     }
-
+    
     if (counts < 1)
 	counts = 1;
 
@@ -783,7 +783,7 @@ void TryRunTics (void)
 
         I_Sleep(1);
     }
-
+    
     // run the count * ticdup dics
     while (counts--)
     {

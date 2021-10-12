@@ -166,7 +166,7 @@ static void InitConnectData(net_connect_data_t *connect_data)
     //
     // Run as the left screen in three screen mode.
     //
-
+    
     if (M_CheckParm("-left") > 0)
     {
         viewangleoffset = ANG90;
@@ -178,7 +178,7 @@ static void InitConnectData(net_connect_data_t *connect_data)
     //
     // Run as the right screen in three screen mode.
     //
-
+    
     if (M_CheckParm("-right") > 0)
     {
         viewangleoffset = ANG270;
@@ -190,7 +190,7 @@ static void InitConnectData(net_connect_data_t *connect_data)
     //
 
     // Game type fields:
-
+    
     connect_data->gamemode = gamemode;
     connect_data->gamemission = gamemission;
 

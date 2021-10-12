@@ -1764,7 +1764,7 @@ static void SetVariable(default_t *def, char *value)
 
         case DEFAULT_FLOAT:
             // nop: FLOATS SUCK!!!
-            // * (float *) def->location = (float) atof(value);
+            * (float *) def->location = (float) atoi(value);
             break;
     }
 }

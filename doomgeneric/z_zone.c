@@ -96,8 +96,8 @@ void Z_ClearZone (memzone_t* zone)
 //
 void Z_Init (void)
 {
-    memblock_t*	block;
-    int		size;
+    memblock_t* block;
+    int size;
 
     mainzone = (memzone_t *)I_ZoneBase (&size);
     mainzone->size = size;

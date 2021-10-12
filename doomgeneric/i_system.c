@@ -72,6 +72,9 @@ static atexit_listentry_t *exit_funcs = NULL;
 
 void I_AtExit(atexit_func_t func, boolean run_on_error)
 {
+    // nop: ye
+    return;
+    
     atexit_listentry_t *entry;
 
     entry = malloc(sizeof(*entry));

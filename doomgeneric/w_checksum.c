@@ -67,6 +67,9 @@ static void ChecksumAddLump(sha1_context_t *sha1_context, lumpinfo_t *lump)
 
 void W_Checksum(sha1_digest_t digest)
 {
+    // nop: sad
+    return;
+    
     sha1_context_t sha1_context;
     unsigned int i;
 

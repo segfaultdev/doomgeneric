@@ -420,25 +420,22 @@ void D_DoomLoop (void)
     	G_BeginRecording ();
 
     main_loop_started = true;
-
+    
     TryRunTics();
-
     I_SetWindowTitle(gamedescription);
     I_GraphicsCheckCommandLine();
     I_SetGrabMouseCallback(D_GrabMouseCallback);
     I_InitGraphics();
     I_EnableLoadingDisk();
-
     V_RestoreBuffer();
     R_ExecuteSetViewSize();
-
     D_StartGameLoop();
 
     if (testcontrols)
     {
         wipegamestate = gamestate;
     }
-
+    
     while (1)
     {
 		// frame syncronous IO operations
@@ -1167,7 +1164,8 @@ void D_DoomMain (void)
     int numiwadlumps;
 #endif
 
-    I_AtExit(D_Endoom, false);
+    // nop: it looks like this is crashing doom so...
+    // I_AtExit(D_Endoom, false);
 
     // print banner
 
@@ -1358,7 +1356,8 @@ void D_DoomMain (void)
     M_LoadDefaults();
 
     // Save configuration at exit.
-    I_AtExit(M_SaveDefaults, false);
+    // nop: again, this doesn't work
+    //I_AtExit(M_SaveDefaults, false);
 
     // Find main IWAD file and load it.
     iwadfile = D_FindIWAD(IWAD_MASK_DOOM, &gamemission);
@@ -1508,7 +1507,8 @@ void D_DoomMain (void)
         printf("Playing demo %s.\n", file);
     }
 
-    I_AtExit((atexit_func_t) G_CheckDemoStatus, true);
+    // nop: yup
+    // I_AtExit((atexit_func_t) G_CheckDemoStatus, true);
 
     // Generate the WAD hash table.  Speed things up a bit.
     W_GenerateHashTable();
@@ -1611,7 +1611,7 @@ void D_DoomMain (void)
     I_InitJoystick();
     I_InitSound(true);
     I_InitMusic();
-
+    
 #ifdef FEATURE_MULTIPLAYER
     printf ("NET_Init: Init network subsystem.\n");
     NET_Init ();
@@ -1619,7 +1619,7 @@ void D_DoomMain (void)
 
     // Initial netgame startup. Connect to server etc.
     D_ConnectNetGame();
-
+    
     // get skill / episode / map from parms
     startskill = sk_medium;
     startepisode = 1;
@@ -1777,6 +1777,8 @@ void D_DoomMain (void)
 
     DEH_printf("ST_Init: Init status bar.\n");
     ST_Init ();
+    
+    DEH_printf("doin' weird stuff.\n");
 
     // If Doom II without a MAP01 lump, this is a store demo.
     // Moved this here so that MAP01 isn't constantly looked up
@@ -1821,12 +1823,16 @@ void D_DoomMain (void)
 		G_TimeDemo (demolumpname);
 		D_DoomLoop ();  // never returns
     }
+    
+    DEH_printf("guys we're getting there.\n");
 
     if (startloadgame >= 0)
     {
         M_StringCopy(file, P_SaveGameFile(startloadgame), sizeof(file));
         G_LoadGame(file);
     }
+    
+    DEH_printf("aaaaa so close.\n");
 
     if (gameaction != ga_loadgame )
     {
@@ -1835,6 +1841,8 @@ void D_DoomMain (void)
 		else
 			D_StartTitle ();                // start up intro loop
     }
+    
+    DEH_printf("YES.\n");
 
     D_DoomLoop ();  // never returns
 }
